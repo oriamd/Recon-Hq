@@ -1,0 +1,57 @@
+mat-sidenav-container {
+  height: 100%;
+  width: 100%;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  height: 80px;
+  background-color: #303F9F;
+  color: white;
+}
+
+header h1 {
+  text-align: center;
+}
+
+nav {
+  width: 100%;
+}
+
+nav .mat-tab-label {
+  min-width: unset;
+}
+
+nav .mat-ink-bar {
+  background-color: #303F9F !important;
+}
+
+nav section {
+  margin: 0 24px;
+}
+
+nav .tab-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav .mat-button {
+  min-width: 40px;
+  height: 40px;
+}
+
+nav .tab-title h2 {
+  display: flex;
+}
+nav .tab-title .fa{
+  color :#303F9F;
+}
+
+.list-target-item i {
+  width: 20px;
+  margin-right: 10px;
+}

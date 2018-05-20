@@ -1,0 +1,30 @@
+<mat-sidenav-container>
+  <header><h1>Recon</h1></header>
+  <nav>
+    <mat-tab-group [backgroundColor]="'#303F9F'">
+      <mat-tab label="Targets">
+        <section>
+          <div class="tab-title">
+            <h2>Targets</h2>
+            <button (click)="refreshTargets()" mat-button color="primary">
+              <i class="fa fa-sync" [ngClass]="{'fa-spin':(isLoadingTarget$ | async)}"></i>
+            </button>
+          </div>
+          <mat-list>
+            <mat-list-item *ngFor="let target of targets$ | async ">
+              <div class="list-target-item">
+                <i class="fa"
+                   [ngClass]="{'fa-bullseye target-color':target.type=='target', 'fa-exclamation-triangle warning-color':target.type=='warning', 'fa-user-friends ally-color':target.type=='ally'}"></i>
+                <span>{{target.latitude}},{{target.longitude}}</span>
+              </div>
+            </mat-list-item>
+          </mat-list>
+        </section>
+      </mat-tab>
+      <mat-tab label="Recons">
+        <h2>Recons</h2>
+        <p>...</p>
+      </mat-tab>
+    </mat-tab-group>
+  </nav>
+</mat-sidenav-container>
