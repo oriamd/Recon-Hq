@@ -22,3 +22,10 @@ body{
 .warning-color{
   color: #FFF176
 }
+
+.new-target-panel{
+  width: 500px;
+}
+.new-target-panel .mat-dialog-container {
+  padding: 0;
+}

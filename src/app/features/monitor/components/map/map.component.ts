@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MapTypeControlOptions} from "@agm/core/services/google-maps-types";
 import {GoogleMapsAPIWrapper} from "@agm/core";
-import {selectTargets} from "@app/features/monitor/reducers/target.reducer";
+import {selectAllTargets} from "@app/features/monitor/reducers/target.reducer";
 import {Observable} from "rxjs/Observable";
 import {Store} from "@ngrx/store";
 import {TargetsState} from "@app/features/monitor/monitor.module";
@@ -22,7 +22,7 @@ export class MapComponent implements OnInit {
   targets$: Observable<any>;
 
   constructor(googleMapsAPIWrapper: GoogleMapsAPIWrapper, private store: Store<TargetsState>) {
-    this.targets$ = this.store.select(selectTargets);
+    this.targets$ = this.store.select(selectAllTargets);
 
     this.setAgmMapOptions()
   }

@@ -4,13 +4,17 @@ import {Observable} from "rxjs/Observable";
 
 @Injectable({
   providedIn: 'root'
-
 })
+
 export class TargetService {
 
   url:string = 'http://localhost:3000/target';
 
   constructor(private httpClient : HttpClient) { }
+
+  postTarget(target):Observable<any>{
+    return this.httpClient.post(this.url,target);
+  }
 
   getAllTargets():Observable<any>{
     return this.httpClient.get(this.url);

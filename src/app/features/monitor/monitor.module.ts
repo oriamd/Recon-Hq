@@ -10,11 +10,14 @@ import {StoreModule} from "@ngrx/store";
 import {targetReducer} from "@app/features/monitor/reducers/target.reducer";
 import {EffectsModule} from "@ngrx/effects";
 import {TargetsEffects} from "@app/features/monitor/effects/targets.effects";
+import { NewTargetDialogComponent } from './components/new-target-dialog/new-target-dialog.component';
 
 export interface TargetsState {
   targets:any[],
   showTargetsLoader: boolean
-};
+  newTarget: any,
+  showCreateNewTargetLoader: boolean
+}
 
 @NgModule({
   imports: [
@@ -28,6 +31,7 @@ export interface TargetsState {
     EffectsModule.forRoot([TargetsEffects])
 
   ],
-  declarations: [DesktopComponent, MenuComponent, MapComponent]
+  declarations: [DesktopComponent, MenuComponent, MapComponent, NewTargetDialogComponent],
+  entryComponents: [NewTargetDialogComponent]
 })
 export class MonitorModule { }

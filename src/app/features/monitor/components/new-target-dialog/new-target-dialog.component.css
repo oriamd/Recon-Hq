@@ -1,0 +1,41 @@
+header, footer{
+  height: 40px;
+}
+
+header{
+  background-color: #303F9F;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-size: 16px;
+  padding: 20px;
+}
+
+header button{
+  min-width: 40px;
+}
+
+footer{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+}
+
+footer button{
+  margin: 0 5px;
+}
+
+.form-inputs-container{
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+}
+
+.form-inputs-container > mat-form-field{
+  margin-bottom: 20px;
+}
+.form-inputs-container > mat-form-field:last-child{
+  margin-bottom: 0;
+}

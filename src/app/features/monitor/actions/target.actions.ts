@@ -1,4 +1,4 @@
-import {Action} from '@ngrx/store'
+import {Action} from '@ngrx/store';
 
 export enum TargetActionTypes {
   LoadAllTargets = '[target] get',
@@ -6,7 +6,12 @@ export enum TargetActionTypes {
   LoadAllTargetsSuccess = '[target] Fetch success',
   UpdateAllTargets = '[target] Update targets',
   LoadAllTargetsError = '[target] Fetch error',
-  ToggleTargetsLoader = '[target] Toggle Targets Loader'
+  ToggleTargetsLoader = '[target] Toggle Targets Loader',
+  CreateNewTarget = '[target] CreateNewTarget',
+  PostNewTarget = '[target] PostNewTarget',
+  CreateNewTargetSuccess = '[target] CreateNewTargetSuccess',
+  CreateNewTargetError = '[target] CreateNewTargetError',
+  ToggleCreateNewTargetLoader = '[target] ToggleCreateNewTargetLoader'
 }
 
 export class LoadAllTargets implements Action {
@@ -70,6 +75,55 @@ export class LoadAllTargetsError implements Action {
   }
 }
 
+export class CreateNewTarget implements Action{
+  public type: string;
+  public payload: any;
+
+  constructor(payload: any) {
+    this.type = TargetActionTypes.CreateNewTarget;
+    this.payload = payload;
+  }
+}
+
+export class PostNewTarget implements Action{
+  public type: string;
+  public payload: any;
+
+  constructor(payload: any) {
+    this.type = TargetActionTypes.PostNewTarget;
+    this.payload = payload;
+  }
+}
+
+export class CreateNewTargetSuccess implements Action{
+  public type: string;
+  public payload: any;
+
+  constructor(payload: any) {
+    this.type = TargetActionTypes.CreateNewTargetSuccess;
+    this.payload = payload;
+  }
+}
+
+export class CreateNewTargetError implements Action{
+  public type: string;
+  public payload: any;
+
+  constructor(payload: any) {
+    this.type = TargetActionTypes.CreateNewTargetError;
+    this.payload = payload;
+  }
+}
+
+export class ToggleCreateNewTargetLoader implements Action{
+  public type: string;
+  public payload: any;
+
+  constructor(payload: any) {
+    this.type = TargetActionTypes.ToggleCreateNewTargetLoader;
+    this.payload = payload;
+  }
+}
 
 export type TargetActions
   = LoadAllTargets
