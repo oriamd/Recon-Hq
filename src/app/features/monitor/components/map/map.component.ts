@@ -30,9 +30,20 @@ export class MapComponent implements OnInit {
   ngOnInit() {
   }
 
+  getTargetIconUrl(target){
+    switch (target.type){
+      case "target":
+        return "../../../../../assets/target-icon-sm.png";
+      case "ally":
+        return "../../../../../assets/ally-icon-sm.png";
+      case "warning":
+        return "../../../../../assets/warning-icon-sm.png";
+    }
+  }
+
   setAgmMapOptions(){
     this.mapTypeControlOptions = {
-      mapTypeIds: ['roadmap', 'satellite']
+      mapTypeIds: ['satellite', 'roadmap']
     };
   }
 

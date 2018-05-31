@@ -3,7 +3,7 @@ header, footer{
 }
 
 header{
-  background-color: #303F9F;
+  background-color: var(--secondery-color);
   display: flex;
   justify-content: space-between;
   align-items: center;

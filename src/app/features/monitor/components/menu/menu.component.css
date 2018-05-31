@@ -9,7 +9,7 @@ header {
   align-content: center;
   width: 100%;
   height: 80px;
-  background-color: #303F9F;
+  background-color: var(--primary-dark);
   color: white;
 }
 
@@ -39,7 +39,7 @@ nav {
 }
 
 /deep/ nav .mat-ink-bar {
-  background-color: #303F9F !important;
+  background-color: var(--secondery-color);
 }
 
 nav .tab-title {
@@ -57,7 +57,7 @@ nav .tab-title h2 {
   display: flex;
 }
 nav .tab-title .fa{
-  color :#303F9F;
+  color :var(--secondery-color);
 }
 
 nav .targets-section{

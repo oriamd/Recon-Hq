@@ -4,7 +4,13 @@
   [mapTypeControl]="true"
   [mapTypeControlOptions]="mapTypeControlOptions"
   [streetViewControl]="false"
-  [zoom]="15">
-  <agm-marker *ngFor="let target of targets$ | async " [latitude]="convertToNumber(target.latitude )" [longitude]="convertToNumber(target.longitude)">
+  [zoom]="15"
+  [mapTypeId]="'satellite'">
+  <agm-marker
+    *ngFor="let target of targets$ | async "
+    [latitude]="convertToNumber(target.latitude )"
+    [longitude]="convertToNumber(target.longitude)"
+    [iconUrl]="getTargetIconUrl(target)"
+    >
   </agm-marker>
 </agm-map>

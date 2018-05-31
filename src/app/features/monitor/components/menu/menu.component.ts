@@ -26,13 +26,13 @@ export class MenuComponent implements OnInit {
   }
 
   refreshTargets() {
-    console.log('refreshTargets');
     this.store.dispatch(new TargetActions.LoadAllTargets());
   }
 
   openNewTargetDialog(){
     let newTargetDialog = this.dialog.open(NewTargetDialogComponent, {
-      panelClass: 'new-target-panel'
+      panelClass: 'new-target-panel',
+      disableClose: true
     });
   }
 

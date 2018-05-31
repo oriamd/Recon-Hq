@@ -1,6 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+:root {
+  --primary-dark: #2f3645;
+  --primary-light: #7986CB;
+  --secondery-color: #303F9F;
+  --ok-color: #404041;
+  --target-color: #cc0000;
+  --warning-color: #f7ee7f;
+  --ally-color: #4CAF50;
+}
+
 
 *{
   font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
@@ -9,18 +19,24 @@
 body{
   padding: 0;
   margin: 0;
+  color: #404041;
+}
+
+.btn-save{
+ background-color: #37c998;
+  color: #ffff
 }
 
 .ally-color{
-  color: #81C784
+  color: var(--ally-color)
 }
 
 .target-color{
-  color: #E57373
+  color: var(--target-color)
 }
 
 .warning-color{
-  color: #FFF176
+  color: var(--warning-color)
 }
 
 .new-target-panel{
