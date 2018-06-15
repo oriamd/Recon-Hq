@@ -10,14 +10,13 @@ import {
   CreateNewTargetSuccess,
   FetchAllTargetsFromService, PostNewTarget,
   TargetActions,
-  TargetActionTypes, ToggleCreateNewTargetLoader,
-  ToggleTargetsLoader
-} from '../actions/target.actions';
-import {
+  TargetActionTypes,
+  ToggleCreateNewTargetLoader,
+  ToggleTargetsLoader,
   LoadAllTargetsError,
   LoadAllTargetsSuccess,
   UpdateAllTargets
-} from '@app/features/monitor/actions/target.actions';
+} from '../actions/target.actions';
 
 @Injectable()
 export class TargetsEffects {
@@ -100,7 +99,7 @@ export class TargetsEffects {
 
   @Effect()
   CreateNewTargetError = this.actions
-    .ofType(TargetActionTypes.CreateNewTargetSuccess)
+    .ofType(TargetActionTypes.CreateNewTargetError)
     .flatMap((action) => {
       return [new ToggleCreateNewTargetLoader(false)];
     });

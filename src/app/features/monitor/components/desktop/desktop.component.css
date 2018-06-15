@@ -5,6 +5,7 @@
   width: 100%;
   display: flex;
   flex-direction: row;
+  overflow: hidden;
 }
 
 app-menu{
@@ -15,4 +16,22 @@ app-menu{
 .content{
   height: 100%;
   width: 100%;
+  position: relative;
+}
+
+app-message-dialog{
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 700px;
+  -webkit-transition: bottom 0.2s; /* Safari */
+  transition: bottom 0.2s;
+}
+
+app-message-dialog.show{
+  bottom: 20px;
+  -webkit-transition: bottom 0.2s; /* Safari */
+  transition: bottom 0.2s;
 }

@@ -1,10 +1,10 @@
 <mat-sidenav-container>
   <header><h1>Recon</h1></header>
   <nav>
-    <mat-tab-group [backgroundColor]="'#303F9F'">
+    <mat-tab-group (selectedTabChange)="tabChanged($event)" [backgroundColor]="'#303F9F'">
       <mat-tab label="Targets">
-        <section class="targets-section">
-          <div class="target-list-section">
+        <section class="menu-section target-menu-section">
+          <div class="menu-list-container">
             <div class="tab-title">
               <h2>Targets</h2>
               <button (click)="refreshTargets()" mat-button color="primary">
@@ -12,11 +12,13 @@
               </button>
             </div>
             <mat-list>
-              <mat-list-item *ngFor="let target of targets$ | async ">
-                <div class="list-target-item">
+              <mat-list-item *ngFor="let target of targets$ | async " (click)="targetItemClicked(target)">
+                <div class="menu-list-item target-item">
                   <i class="fa"
                      [ngClass]="{'fa-bullseye target-color':target.type=='target', 'fa-exclamation-triangle warning-color':target.type=='warning', 'fa-user-friends ally-color':target.type=='ally'}"></i>
-                  <span>{{target.latitude}},{{target.longitude}}</span>
+                  <span>{{target.id}}</span>:
+                  <span>{{target.latitude}}</span> ,
+                  <span>{{target.longitude}}</span>
                 </div>
               </mat-list-item>
             </mat-list>
@@ -29,9 +31,21 @@
         </section>
       </mat-tab>
       <mat-tab label="Recons">
-        <section>
-          <div class="tab-title">
-            <h2>Recons</h2>
+        <section class="menu-section">
+          <div class="menu-list-container">
+            <div class="tab-title">
+              <h2>Recons</h2>
+            </div>
+            <mat-list>
+              <mat-list-item *ngFor="let reconunit of reconunits$ | async ">
+                <div class="reconunit-item">
+                  <span>{{reconunit.name}}</span>
+                  <button *ngIf="reconunit.id != Constants.reconUnits.hq" mat-button (click)="openMessageDialog(reconunit)" color="primary">
+                    <i class="fa fa-envelope"></i>
+                  </button>
+                </div>
+              </mat-list-item>
+            </mat-list>
           </div>
         </section>
       </mat-tab>

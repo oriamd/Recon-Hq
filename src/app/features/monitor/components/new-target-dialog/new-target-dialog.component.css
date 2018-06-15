@@ -9,7 +9,8 @@ header{
   align-items: center;
   color: white;
   font-size: 16px;
-  padding: 20px;
+  padding: 0 20px;
+  height: 60px;
 }
 
 header button{
@@ -20,7 +21,8 @@ footer{
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 20px;
+  padding: 0 20px;
+  height: 60px;
 }
 
 footer button{

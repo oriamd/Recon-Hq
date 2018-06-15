@@ -1,8 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {TargetsState} from '@app/features/monitor/monitor.module';
+import {MessageState, TargetsState} from '@app/features/monitor/monitor.module';
 import {Observable} from 'rxjs/Rx';
 import * as TargetActions from '../../actions/target.actions'
+import {selectShowMessageDialog} from "@app/features/monitor/reducers/message.reducer";
 
 
 @Component({
@@ -13,8 +14,13 @@ import * as TargetActions from '../../actions/target.actions'
 export class DesktopComponent implements OnInit, OnDestroy {
   readonly PULLING_INTERVAL_TIME = 3000;
   pullerSubscription;
-
-  constructor(private store :Store<TargetsState>) {
+  showMessageDialog : boolean;
+  destReconunit: any;
+  constructor(private targetStore :Store<TargetsState>,private messageStore: Store<MessageState>) {
+    this.messageStore.select(selectShowMessageDialog).subscribe(value => {
+      this.showMessageDialog = value.showMessageDialog;
+      this.destReconunit = value.destReconunit;
+    });
   }
 
   ngOnInit() {
@@ -23,7 +29,7 @@ export class DesktopComponent implements OnInit, OnDestroy {
 
   startPullingTargets(){
     this.pullerSubscription = Observable.interval(this.PULLING_INTERVAL_TIME).subscribe(()=>{
-      this.store.dispatch(new TargetActions.FetchAllTargetsFromService())
+      this.targetStore.dispatch(new TargetActions.FetchAllTargetsFromService())
     })
   }
 

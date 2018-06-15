@@ -60,14 +60,14 @@ nav .tab-title .fa{
   color :var(--secondery-color);
 }
 
-nav .targets-section{
+nav .menu-section{
   display: flex;
   flex-grow: 1;
   flex-direction: column;
   justify-content: space-between;
 }
 
-nav .targets-section .btn-container{
+nav .menu-section .btn-container{
   width: 100%;
   height: 40px;
   display: flex;
@@ -75,26 +75,53 @@ nav .targets-section .btn-container{
   margin-bottom: 30px;
   margin-top: 20px;
 }
-nav .targets-section .btn-container button{
+nav .menu-section .btn-container button{
   width: 100px;
 }
 
-nav .targets-section .btn-container i{
+nav .menu-section .btn-container i{
   margin-right: 5px;
 }
 
-/deep/ nav .target-list-section mat-list{
+/deep/ nav .menu-list-container mat-list{
   height: calc(100vh - 300px);
   overflow: auto;
   padding: 0 24px;
 }
 
-nav .target-list-section .tab-title{
+nav .menu-list-container .tab-title{
   height: 70px;
   padding: 0 24px;
 }
 
-.list-target-item i {
+.menu-section mat-list-item{
+  cursor: pointer;
+}
+
+.menu-section.target-menu-section mat-list-item:hover{
+  background-color: rgba(0,0,0,.04)
+}
+
+.target-item{
+  display: flex;
+  justify-content: start;
+  width: 100%;
+}
+.target-item span{
+  width: 70px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.target-item i{
   width: 20px;
   margin-right: 10px;
+}
+
+.reconunit-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }

@@ -2,3 +2,17 @@ agm-map {
   height: 100%;
   width: 100%;
 }
+.marker-info-window{
+  padding: 5px;
+  font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  font-weight: 500;
+  color : #2f3645;
+  display: flex;
+  flex-direction: column;
+}
+.marker-info-window span{
+  margin-bottom: 5px;
+}
+.marker-info-window span:last-child{
+  margin-bottom: 0;
+}

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { NgForm} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {TargetsState} from '@app/features/monitor/monitor.module';
@@ -7,18 +7,21 @@ import {selectIsLadingCreateTarget} from '@app/features/monitor/reducers/target.
 import {Observable, Subscription} from 'rxjs';
 import {Actions} from '@ngrx/effects';
 import {TargetActionTypes} from '@app/features/monitor/actions/target.actions';
-import {MatDialog, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-new-target-dialog',
   templateUrl: './new-target-dialog.component.html',
   styleUrls: ['./new-target-dialog.component.css']
 })
+
 export class NewTargetDialogComponent implements OnInit, OnDestroy {
   isSaving$: Observable<any>;
   subSaveSuccess: Subscription;
+  latitude;
+  longitude;
 
-  constructor(private store :Store<TargetsState>,private updates$: Actions, private dialogRef: MatDialogRef<MatDialog>) {
+  constructor(private store :Store<TargetsState>,private updates$: Actions, private dialogRef: MatDialogRef<MatDialog>,  @Inject(MAT_DIALOG_DATA) public data: any) {
     this.isSaving$ = this.store.select(selectIsLadingCreateTarget);
 
     this.subSaveSuccess = updates$
@@ -29,6 +32,10 @@ export class NewTargetDialogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    if(this.data && this.data.coords){
+      this.latitude = this.data.coords.lat;
+      this.longitude = this.data.coords.lng;
+    }
   }
 
   cancel(){

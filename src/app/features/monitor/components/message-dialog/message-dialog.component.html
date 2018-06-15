@@ -1,0 +1,20 @@
+<div class="msg-dialog-container">
+  <form class="form-container" (ngSubmit)="onSubmit(newMessageForm)" #newMessageForm="ngForm">
+    <div class="dest-name">
+      <span *ngIf="destReconunit!=null">To: {{destReconunit.name}}</span>
+    </div>
+    <mat-form-field>
+      <input ngModel name="messageText" matInput placeholder="Message" value="" autocomplete="off" required>
+    </mat-form-field>
+  </form>
+  <div class="btns-contianer">
+    <button (click)="newMessageForm.ngSubmit.emit()" [disabled]="!newMessageForm.valid" mat-raised-button
+            class="btn-save">
+      <span *ngIf="!(showCreateNewMessageLoader$ | async)">SEND</span>
+      <i *ngIf="showCreateNewMessageLoader$ | async" class="fa fa-spinner fa-spin"></i>
+    </button>
+    <button (click)="cancel()" mat-raised-button>
+      CANCEL
+    </button>
+  </div>
+</div>

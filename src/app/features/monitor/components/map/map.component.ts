@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {MapTypeControlOptions} from "@agm/core/services/google-maps-types";
-import {GoogleMapsAPIWrapper} from "@agm/core";
-import {selectAllTargets} from "@app/features/monitor/reducers/target.reducer";
-import {Observable} from "rxjs/Observable";
-import {Store} from "@ngrx/store";
-import {TargetsState} from "@app/features/monitor/monitor.module";
+import {MapTypeControlOptions} from '@agm/core/services/google-maps-types';
+import {GoogleMapsAPIWrapper} from '@agm/core';
+import {selectAllTargets, selectFocusedTarget} from '@app/features/monitor/reducers/target.reducer';
+import {Observable} from 'rxjs/Observable';
+import {Store} from '@ngrx/store';
+import {TargetsState} from '@app/features/monitor/monitor.module';
+import {NewTargetDialogComponent} from '@app/features/monitor/components/new-target-dialog/new-target-dialog.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-map',
@@ -18,37 +20,70 @@ export class MapComponent implements OnInit {
     lng: 34.811356
   };
   mapTypeControlOptions: MapTypeControlOptions;
+  map: any;
 
-  targets$: Observable<any>;
+  focusedTarget$: Observable<any>;
+  focusedTargetId: any
+  targets: any;
 
-  constructor(googleMapsAPIWrapper: GoogleMapsAPIWrapper, private store: Store<TargetsState>) {
-    this.targets$ = this.store.select(selectAllTargets);
+  constructor(private googleMapsAPIWrapper: GoogleMapsAPIWrapper, private store: Store<TargetsState>, public dialog: MatDialog) {
+    this.store.select(selectAllTargets).subscribe(value => {
+      this.targets = value;
+    });
+    this.focusedTarget$ = this.store.select(selectFocusedTarget);
 
-    this.setAgmMapOptions()
+
+    this.setAgmMapOptions();
   }
 
   ngOnInit() {
   }
 
-  getTargetIconUrl(target){
-    switch (target.type){
-      case "target":
-        return "../../../../../assets/target-icon-sm.png";
-      case "ally":
-        return "../../../../../assets/ally-icon-sm.png";
-      case "warning":
-        return "../../../../../assets/warning-icon-sm.png";
+  mapReady(map) {
+    this.map = map;
+
+    this.focusedTarget$.subscribe(value => {
+      if (value != null && this.map != null) {
+        let coords = {
+          lat: parseFloat(value.latitude),
+          lng: parseFloat(value.longitude)
+        };
+        this.map.setCenter(coords);
+        this.focusedTargetId = value.id;
+      }
+    });
+  }
+
+  getTargetIconUrl(target) {
+    switch (target.type) {
+      case 'target':
+        return '../../../../../assets/target-icon-sm.png';
+      case 'ally':
+        return '../../../../../assets/ally-icon-sm.png';
+      case 'warning':
+        return '../../../../../assets/warning-icon-sm.png';
     }
   }
 
-  setAgmMapOptions(){
+  setAgmMapOptions() {
     this.mapTypeControlOptions = {
       mapTypeIds: ['satellite', 'roadmap']
     };
   }
 
-  convertToNumber(str){
+  convertToNumber(str) {
     return +str;
   }
 
+  markerClick(target){
+    this.focusedTargetId = this.targets.id;
+  }
+
+  onMapClick($event) {
+    let newTargetDialog = this.dialog.open(NewTargetDialogComponent, {
+      panelClass: 'new-target-panel',
+      disableClose: true,
+      data: $event
+    });
+  }
 }

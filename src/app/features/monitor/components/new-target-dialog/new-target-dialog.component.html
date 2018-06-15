@@ -6,10 +6,10 @@
   <form (ngSubmit)="onSubmit(newTargetForm)" #newTargetForm="ngForm">
     <div class="form-inputs-container">
       <mat-form-field>
-        <input ngModel name="latitude" matInput placeholder="Latitude" value="" autocomplete="off" required>
+        <input [(ngModel)]="latitude" name="latitude" matInput placeholder="Latitude" value="" autocomplete="off" required>
       </mat-form-field>
       <mat-form-field>
-        <input ngModel name="longitude" matInput placeholder="Longitude" value="" autocomplete="off" required>
+        <input [(ngModel)]="longitude" name="longitude" matInput placeholder="Longitude" value="" autocomplete="off" required>
       </mat-form-field>
       <mat-form-field>
         <input ngModel name="altitude" matInput placeholder="Altitude" value="" autocomplete="off" required>
@@ -18,7 +18,7 @@
         <input ngModel name="size" matInput placeholder="Size" autocomplete="off" value="">
       </mat-form-field>
       <mat-form-field>
-        <mat-select [ngModel]="'target'" name="type " matInput placeholder="Target Type">
+        <mat-select [ngModel]="'target'" name="type" matInput placeholder="Target Type">
           <mat-option value="target">Target</mat-option>
           <mat-option value="warning">Warning</mat-option>
           <mat-option value="ally">Ally</mat-option>

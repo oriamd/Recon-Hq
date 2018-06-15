@@ -5,7 +5,6 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
 
-
 const routes: Routes = [
   {path: '', redirectTo: '/monitor', pathMatch: 'full'},
   {path: 'monitor', loadChildren: "./features/monitor/monitor.module#MonitorModule"}

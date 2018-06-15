@@ -1,2 +1,5 @@
 export * from "./map/map.component"
 export * from "./menu/menu.component"
+export * from "./message-dialog/message-dialog.component"
+export * from "./desktop/desktop.component"
+export * from "./new-target-dialog/new-target-dialog.component"

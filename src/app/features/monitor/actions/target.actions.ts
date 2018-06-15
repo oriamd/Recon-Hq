@@ -11,13 +11,13 @@ export enum TargetActionTypes {
   PostNewTarget = '[target] PostNewTarget',
   CreateNewTargetSuccess = '[target] CreateNewTargetSuccess',
   CreateNewTargetError = '[target] CreateNewTargetError',
-  ToggleCreateNewTargetLoader = '[target] ToggleCreateNewTargetLoader'
+  ToggleCreateNewTargetLoader = '[target] ToggleCreateNewTargetLoader',
+  FocusTarget = '[target] FocusTarget'
 }
 
 export class LoadAllTargets implements Action {
   public type: string;
   public payload: any;
-
   constructor() {
     this.type = TargetActionTypes.LoadAllTargets;
     this.payload = null;
@@ -39,7 +39,6 @@ export class UpdateAllTargets implements Action {
   payload: any[];
 
   constructor(payload: any[]) {
-    console.log(payload);
     this.type = TargetActionTypes.UpdateAllTargets;
     this.payload = payload;
   }
@@ -75,7 +74,7 @@ export class LoadAllTargetsError implements Action {
   }
 }
 
-export class CreateNewTarget implements Action{
+export class CreateNewTarget implements Action {
   public type: string;
   public payload: any;
 
@@ -85,7 +84,7 @@ export class CreateNewTarget implements Action{
   }
 }
 
-export class PostNewTarget implements Action{
+export class PostNewTarget implements Action {
   public type: string;
   public payload: any;
 
@@ -95,7 +94,7 @@ export class PostNewTarget implements Action{
   }
 }
 
-export class CreateNewTargetSuccess implements Action{
+export class CreateNewTargetSuccess implements Action {
   public type: string;
   public payload: any;
 
@@ -105,7 +104,7 @@ export class CreateNewTargetSuccess implements Action{
   }
 }
 
-export class CreateNewTargetError implements Action{
+export class CreateNewTargetError implements Action {
   public type: string;
   public payload: any;
 
@@ -115,12 +114,22 @@ export class CreateNewTargetError implements Action{
   }
 }
 
-export class ToggleCreateNewTargetLoader implements Action{
+export class ToggleCreateNewTargetLoader implements Action {
   public type: string;
   public payload: any;
 
   constructor(payload: any) {
     this.type = TargetActionTypes.ToggleCreateNewTargetLoader;
+    this.payload = payload;
+  }
+}
+
+export class FocusTarget implements Action {
+  public type: string;
+  public payload: any;
+
+  constructor(payload: any) {
+    this.type = TargetActionTypes.FocusTarget;
     this.payload = payload;
   }
 }
@@ -132,4 +141,5 @@ export type TargetActions
   | LoadAllTargetsSuccess
   | UpdateAllTargets
   | LoadAllTargetsError
-  | ToggleTargetsLoader;
+  | ToggleTargetsLoader
+  | FocusTarget;
