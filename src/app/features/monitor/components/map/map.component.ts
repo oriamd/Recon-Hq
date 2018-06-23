@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MapTypeControlOptions} from '@agm/core/services/google-maps-types';
 import {GoogleMapsAPIWrapper} from '@agm/core';
 import {selectAllTargets, selectFocusedTarget} from '@app/features/monitor/reducers/target.reducer';
+import {selectAllReconUnits, selectFocusedReonunit} from '@app/features/monitor/reducers/reconunit.reducer';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 import {TargetsState} from '@app/features/monitor/monitor.module';
@@ -23,14 +24,21 @@ export class MapComponent implements OnInit {
   map: any;
 
   focusedTarget$: Observable<any>;
-  focusedTargetId: any
+  focusedTargetId: number;
   targets: any;
+  reconunits: any;
+  focusedReconunit$: Observable<any>;
+  focusedReconunitId: number;
 
   constructor(private googleMapsAPIWrapper: GoogleMapsAPIWrapper, private store: Store<TargetsState>, public dialog: MatDialog) {
     this.store.select(selectAllTargets).subscribe(value => {
       this.targets = value;
     });
+    this.store.select(selectAllReconUnits).subscribe(value => {
+      this.reconunits = value;
+    });
     this.focusedTarget$ = this.store.select(selectFocusedTarget);
+    this.focusedReconunit$ = this.store.select(selectFocusedReonunit);
 
 
     this.setAgmMapOptions();
@@ -50,6 +58,19 @@ export class MapComponent implements OnInit {
         };
         this.map.setCenter(coords);
         this.focusedTargetId = value.id;
+        this.focusedReconunitId = -1;
+      }
+    });
+
+    this.focusedReconunit$.subscribe(value => {
+      if (value != null && this.map != null) {
+        let coords = {
+          lat: parseFloat(value.latitude),
+          lng: parseFloat(value.longitude)
+        };
+        this.map.setCenter(coords);
+        this.focusedReconunitId = value.id;
+        this.focusedTargetId = -1;
       }
     });
   }
@@ -86,4 +107,5 @@ export class MapComponent implements OnInit {
       data: $event
     });
   }
+
 }

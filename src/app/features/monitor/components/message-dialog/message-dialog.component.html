@@ -4,7 +4,7 @@
       <span *ngIf="destReconunit!=null">To: {{destReconunit.name}}</span>
     </div>
     <mat-form-field>
-      <input ngModel name="messageText" matInput placeholder="Message" value="" autocomplete="off" required>
+      <input [(ngModel)]="messageText" name="messageText" matInput placeholder="Message" value="" autocomplete="off" required>
     </mat-form-field>
   </form>
   <div class="btns-contianer">

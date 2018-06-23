@@ -32,6 +32,7 @@ nav {
 
 /deep/ nav .mat-tab-body-content{
   display: flex;
+  overflow-x: hidden;
 }
 
 /deep/ nav .mat-tab-label {
@@ -65,6 +66,7 @@ nav .menu-section{
   flex-grow: 1;
   flex-direction: column;
   justify-content: space-between;
+  padding: 0 10px;
 }
 
 nav .menu-section .btn-container{
@@ -86,7 +88,6 @@ nav .menu-section .btn-container i{
 /deep/ nav .menu-list-container mat-list{
   height: calc(100vh - 300px);
   overflow: auto;
-  padding: 0 24px;
 }
 
 nav .menu-list-container .tab-title{
@@ -94,24 +95,43 @@ nav .menu-list-container .tab-title{
   padding: 0 24px;
 }
 
-.menu-section mat-list-item{
+
+.menu-section mat-list-item.clicable-item:hover{
+  background-color: rgba(0,0,0,.04);
   cursor: pointer;
 }
 
-.menu-section.target-menu-section mat-list-item:hover{
-  background-color: rgba(0,0,0,.04)
+.menu-list-item{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
 }
 
 .target-item{
-  display: flex;
-  justify-content: start;
-  width: 100%;
+  justify-content: space-between;
 }
+
 .target-item span{
-  width: 70px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.target-item .target-id{
+  width: 45px;
+}
+
+.target-item .target-coord{
+  flex-grow: 1;
+  display: flex;
+}
+.target-item .target-coord span{
+  flex-grow: 1;
+}
+
+.target-item span .menu-list-item-buttons{
+
 }
 
 .target-item i{
@@ -120,8 +140,5 @@ nav .menu-list-container .tab-title{
 }
 
 .reconunit-item{
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  width: 100%;
 }

@@ -13,7 +13,14 @@ import {ReconUnitEffects} from '@app/features/monitor/effects/reconunits.effects
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {messageReducer} from "@app/features/monitor/reducers/message.reducer";
 import {MessageEffect} from "@app/features/monitor/effects/message.effect";
-import { LiveVideoComponent } from './componenets/live-video/live-video.component';
+import { LiveVideoComponent } from './components/live-video/live-video.component';
+import {liveVideoReducer} from "@app/features/monitor/reducers/live-video.reducer";
+
+export interface LiveVideoState {
+  reconunit: any,
+  showLiveVideo: boolean,
+  isLoadingLiveVideo: boolean
+}
 
 export interface TargetsState {
   targets:any[],
@@ -25,7 +32,8 @@ export interface TargetsState {
 
 export interface ReconUnitsState {
   reconunits:any[],
-  showReconunitsLoader: boolean
+  showReconunitsLoader: boolean,
+  focusedReconunit: any
 }
 
 export interface MessageState {
@@ -43,7 +51,7 @@ export interface MessageState {
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC2uR9sTGKgFo7pf-eRFK8Sexvz3rLaJcA'
     }),
-    StoreModule.forRoot({'targets':targetReducer,'reconunits':reconUnitReducer, 'messages' : messageReducer}),
+    StoreModule.forRoot({'targets':targetReducer,'reconunits':reconUnitReducer, 'messages' : messageReducer, 'liveVideo': liveVideoReducer}),
     EffectsModule.forRoot([TargetsEffects, ReconUnitEffects, MessageEffect]),
     StoreDevtoolsModule.instrument()
 

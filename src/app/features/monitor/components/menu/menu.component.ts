@@ -4,6 +4,7 @@ import {TargetsState} from '@app/features/monitor/monitor.module';
 import {Store} from '@ngrx/store';
 import * as TargetActions from '../../actions/target.actions';
 import * as ReconUnitActions from '../../actions/reconunit.actions';
+import * as LiveVideoActions from '../../actions/live-video.actions';
 import {selectIsLadingTargets, selectAllTargets} from '@app/features/monitor/reducers/target.reducer';
 import {selectIsReconUnitsLoading, selectAllReconUnits} from '@app/features/monitor/reducers/reconunit.reducer';
 import {MatDialog, MatTabChangeEvent} from '@angular/material';
@@ -50,6 +51,10 @@ export class MenuComponent implements OnInit {
     });
   }
 
+  openLiveVideo(reconunit) {
+    this.store.dispatch(new LiveVideoActions.ToggleLiveVideo(true, reconunit));
+  }
+
   tabChanged($event: MatTabChangeEvent) {
     switch ($event.tab.textLabel) {
       case 'Recons':
@@ -61,8 +66,22 @@ export class MenuComponent implements OnInit {
     this.store.dispatch(new TargetActions.FocusTarget(target));
   }
 
+  reconunitItemClicked(reconunit){
+    if(!this.isClicableItem(reconunit)){
+      return false
+    }
+    this.store.dispatch(new ReconUnitActions.FocusReconunit(reconunit));
+  }
+
   openMessageDialog(reconunit){
     this.store.dispatch(new MessageActions.ToggleMessageDialog(true,reconunit));
+  }
+
+  isClicableItem(item){
+    return item.longitude != ''
+      && item.longitude != null
+      && item.latitude != ''
+      && item.latitude != null
   }
 
 

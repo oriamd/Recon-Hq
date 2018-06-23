@@ -9,7 +9,8 @@
 }
 
 app-menu{
-  width: 350px;
+  width: 320px;
+  min-width: 320px;
   height: 100%;
 }
 
@@ -34,4 +35,12 @@ app-message-dialog.show{
   bottom: 20px;
   -webkit-transition: bottom 0.2s; /* Safari */
   transition: bottom 0.2s;
+}
+
+app-live-video{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 400px;
+  height: 200px;
 }

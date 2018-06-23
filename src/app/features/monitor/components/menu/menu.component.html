@@ -12,13 +12,14 @@
               </button>
             </div>
             <mat-list>
-              <mat-list-item *ngFor="let target of targets$ | async " (click)="targetItemClicked(target)">
+              <mat-list-item *ngFor="let target of targets$ | async " (click)="targetItemClicked(target)" class="clicable-item">
                 <div class="menu-list-item target-item">
-                  <i class="fa"
-                     [ngClass]="{'fa-bullseye target-color':target.type=='target', 'fa-exclamation-triangle warning-color':target.type=='warning', 'fa-user-friends ally-color':target.type=='ally'}"></i>
-                  <span>{{target.id}}</span>:
-                  <span>{{target.latitude}}</span> ,
-                  <span>{{target.longitude}}</span>
+                  <div>
+                    <i class="fa"
+                       [ngClass]="{'fa-bullseye target-color':target.type=='target', 'fa-exclamation-triangle warning-color':target.type=='warning', 'fa-user-friends ally-color':target.type=='ally'}"></i>
+                    <span class="target-id">{{target.id}} </span>
+                  </div>
+                  <span>{{target.createdon | date : 'H:m d.M'}}</span>
                 </div>
               </mat-list-item>
             </mat-list>
@@ -37,12 +38,19 @@
               <h2>Recons</h2>
             </div>
             <mat-list>
-              <mat-list-item *ngFor="let reconunit of reconunits$ | async ">
-                <div class="reconunit-item">
+              <mat-list-item *ngFor="let reconunit of reconunits$ | async " [ngClass]="{'clicable-item' : isClicableItem(reconunit)}" (click)="reconunitItemClicked(reconunit)">
+                <div class="menu-list-item reconunit-item">
                   <span>{{reconunit.name}}</span>
-                  <button *ngIf="reconunit.id != Constants.reconUnits.hq" mat-button (click)="openMessageDialog(reconunit)" color="primary">
-                    <i class="fa fa-envelope"></i>
-                  </button>
+                  <div class="menu-list-item-buttons">
+                    <button *ngIf="reconunit.id != Constants.reconUnits.hq" mat-button
+                            (click)="openMessageDialog(reconunit)" color="primary">
+                      <i class="fa fa-envelope"></i>
+                    </button>
+                    <button *ngIf="reconunit.id != Constants.reconUnits.hq" mat-button
+                            (click)="openLiveVideo(reconunit)" color="primary">
+                      <i class="fa fa-video"></i>
+                    </button>
+                  </div>
                 </div>
               </mat-list-item>
             </mat-list>

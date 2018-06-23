@@ -1,4 +1,5 @@
 import {Action} from '@ngrx/store';
+import {TargetActionTypes} from "@app/features/monitor/actions/target.actions";
 
 export enum ReconUnitActionTypes {
   LoadAllReconUnits = '[reconunit] get',
@@ -7,6 +8,7 @@ export enum ReconUnitActionTypes {
   LoadAllReconUnitsError = '[reconunit] Fetch error',
   LoadAllReconUnitsSuccess = '[reconunit] Load Success',
   ToggleLoadAllReconUnitsLoader = '[reconunit] Toggle Targets Loader',
+  FocusReconunit = '[reconunit] Focus on reconunit'
 }
 
 export class LoadAllReconUnits implements Action {
@@ -34,7 +36,6 @@ export class UpdateAllReconUnits implements Action {
   payload: any[];
 
   constructor(payload: any[]) {
-    console.log(payload);
     this.type = ReconUnitActionTypes.UpdateAllReconUnits;
     this.payload = payload;
   }
@@ -70,9 +71,21 @@ export class LoadAllReconUnitsError implements Action {
   }
 }
 
+export class FocusReconunit implements Action {
+  public type: string;
+  public payload: any;
+
+  constructor(payload: any) {
+    this.type = ReconUnitActionTypes.FocusReconunit;
+    this.payload = payload;
+  }
+}
+
+
 export type ReconUnitActions
   = LoadAllReconUnits
   | FetchAllReconUnitsFromService
   | UpdateAllReconUnits
   | LoadAllReconUnitsError
-  | LoadAllReconUnitsSuccess;
+  | LoadAllReconUnitsSuccess
+  | FocusReconunit;

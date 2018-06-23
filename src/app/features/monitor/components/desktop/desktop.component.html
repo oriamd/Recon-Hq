@@ -3,5 +3,6 @@
   <div class="content">
     <app-map></app-map>
     <app-message-dialog [destReconunit]="destReconunit" [ngClass]="{show: showMessageDialog }"></app-message-dialog>
+    <app-live-video *ngIf="(showLiveVideo$ | async)"></app-live-video>
   </div>
 </div>
