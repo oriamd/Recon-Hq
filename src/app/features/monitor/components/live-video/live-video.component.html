@@ -1,0 +1,16 @@
+<div class="live-video-continer">
+  <header>
+    <span>{{reconunit.name}}</span>
+    <button (click)="close()"  mat-button><i class="fa fa-times"></i></button>
+  </header>
+  <div *ngIf="isLiveVideoAvailable">
+    <video #videoElement autoplay="" loop id="mrcLivePreviewPlayer" width="814">
+      <source src="{{videoSrc}}" type="video/mp4">
+    </video>
+  </div>
+  <div class="unavailable-livevideo-message" *ngIf="!isLiveVideoAvailable">
+    <span>
+      Live Video is Unavailable
+    </span>
+  </div>
+</div>
