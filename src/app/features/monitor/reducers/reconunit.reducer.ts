@@ -24,8 +24,8 @@ export function reconUnitReducer(state = defaultState, action: ReconUnitActions)
           stateReconunits.push(payloadReconunit[i]);
         }else{
           if(payloadReconunit[i].latitude != reconunitIndex.latitude || payloadReconunit[i].longitude != reconunitIndex.longitude){
-            payloadReconunit[i].latitude = reconunitIndex.latitude;
-            payloadReconunit[i].longitude = reconunitIndex.longitude;
+            reconunitIndex.latitude = payloadReconunit[i].latitude ;
+            reconunitIndex.longitude = payloadReconunit[i].longitude;
           }
         }
       }
