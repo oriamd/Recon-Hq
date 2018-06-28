@@ -15,7 +15,8 @@
     id="{{target.id}}"
     [latitude]="convertToNumber(target.latitude )"
     [longitude]="convertToNumber(target.longitude)"
-    [iconUrl]="getTargetIconUrl(target)"
+    [iconUrl]="{url:getTargetIconUrl(target),labelOrigin:{x:13,y:35}}"
+    [label]="target.id+''"
     (markerClick)="markerClick(target)"
   >
     <agm-info-window [isOpen]="target.id == focusedTargetId" (infoWindowClose)="focusedTargetId=-1" >

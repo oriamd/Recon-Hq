@@ -46,7 +46,7 @@ export function targetReducer(state = defaultState, action: TargetActions) {
     case TargetActionTypes.ToggleCreateNewTargetLoader:
       return {...state, showCreateNewTargetLoader: action.payload};
     case TargetActionTypes.FocusTarget:
-      //Need to copy the enumerable so subscribers wil get notify when selecting same target twice in a row
+      //Need to clone subscribers wil get notify when selecting same target twice in a row
       return {...state, focusedTarget: Object.assign({}, action.payload)};
 
     default :
