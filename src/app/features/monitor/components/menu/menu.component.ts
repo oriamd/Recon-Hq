@@ -51,7 +51,8 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  openLiveVideo(reconunit) {
+  openLiveVideo(event, reconunit) {
+    event.stopPropagation();
     this.store.dispatch(new LiveVideoActions.ToggleLiveVideo(true, reconunit));
   }
 
@@ -73,7 +74,8 @@ export class MenuComponent implements OnInit {
     this.store.dispatch(new ReconUnitActions.FocusReconunit(reconunit));
   }
 
-  openMessageDialog(reconunit){
+  openMessageDialog(event, reconunit){
+    event.stopPropagation();
     this.store.dispatch(new MessageActions.ToggleMessageDialog(true,reconunit));
   }
 

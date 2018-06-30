@@ -43,11 +43,11 @@
                   <span>{{reconunit.name}}</span>
                   <div class="menu-list-item-buttons">
                     <button *ngIf="reconunit.id != Constants.reconUnits.hq" mat-button
-                            (click)="openMessageDialog(reconunit)" color="primary">
+                            (click)="openMessageDialog($event, reconunit)" color="primary">
                       <i class="fa fa-envelope"></i>
                     </button>
                     <button *ngIf="reconunit.id != Constants.reconUnits.hq" mat-button
-                            (click)="openLiveVideo(reconunit)" color="primary">
+                            (click)="openLiveVideo($event, reconunit)" color="primary">
                       <i class="fa fa-video"></i>
                     </button>
                   </div>
